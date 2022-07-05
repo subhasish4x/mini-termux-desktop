@@ -22,9 +22,8 @@ Termux is an *Android terminal emulator* and **Linux environment** app that work
 
 ### How To install termux?
 
-You can install termux form google play store or from f-droid. <br />
+You can install termux from f-droid. <br />
 
-- Get it on [Google Play](https://play.google.com/store/apps/details?id=com.termux)
 - Download from [F-Droid](https://f-droid.org/packages/com.termux/) <br />
 
 More information about installation is [here](https://wiki.termux.com/wiki/Main_Page) <br />
@@ -50,7 +49,7 @@ pkg upgrade && pkg install git
 
 - Clone this repository
 ```
-git clone --depth=1 https://github.com/adi1090x/termux-desktop.git
+git clone --depth=1 https://github.com/subhasish4x/mini-termux-desktop
 ```
 
 > **Warning** : I'm assuming that you're doing this on a fresh termux install. If not, I'll suggest you to do so. However the `setup.sh` script backup every file it replace, It's still recommended that you manually backup your files in order to avoid conflicts. <br />

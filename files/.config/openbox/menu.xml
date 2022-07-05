@@ -24,9 +24,9 @@
 		</item>
 		<separator/>
 		<menu id="root-menu-srct" label="Terminal">
-			<item label="Vim">
+			<item label="Neovim">
 				<action name="Execute">
-					<execute>xfce4-terminal -e vim</execute>
+					<execute>xfce4-terminal -e nvim</execute>
 				</action>
 			</item>
 			<item label="Nano">
@@ -34,73 +34,18 @@
 					<execute>xfce4-terminal -e nano</execute>
 				</action>
 			</item>
-			<item label="Ranger">
-				<action name="Execute">
-					<execute>xfce4-terminal -e ranger</execute>
-				</action>
-			</item>
-			<item label="Htop">
-				<action name="Execute">
-					<execute>xfce4-terminal -e htop</execute>
-				</action>
-			</item>
 			<item label="Ncmpcpp">
 				<action name="Execute">
 					<execute>xfce4-terminal -e ncmpcpp</execute>
 				</action>
 			</item>
-			<item label="Mutt">
-				<action name="Execute">
-					<execute>xfce4-terminal -e mutt</execute>
-				</action>
-			</item>
-			<item label="Elinks">
-				<action name="Execute">
-					<execute>xfce4-terminal -e elinks</execute>
-				</action>
-			</item>
-		</menu>
-		<menu id="root-menu-8399" label="Quick Links">
-			<item label="DuckDuckGo">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://start.duckduckgo.com/</execute>
-				</action>
-			</item>
-			<item label="Google">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://www.google.com</execute>
-				</action>
-			</item>
-			<item label="Wikipedia">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://www.wikipedia.org</execute>
-				</action>
-			</item>
-			<item label="Termux">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://wiki.termux.com/wiki/Main_Page</execute>
-				</action>
-			</item>
-			<item label="Twitter">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://www.twitter.com</execute>
-				</action>
-			</item>
+			</menu>
 			<item label="GitHub">
 				<action name="Execute">
 					<execute>netsurf-gtk3 https://www.github.com</execute>
 				</action>
 			</item>
-			<item label="Reddit">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://www.reddit.com</execute>
-				</action>
-			</item>
-			<item label="Stackoverflow">
-				<action name="Execute">
-					<execute>netsurf-gtk3 https://stackoverflow.com/questions</execute>
-				</action>
-			</item>
+			
 		</menu>
 		<separator/>
 		<menu execute="ob-places-pipemenu --recent ~/" id="pipe-placesmenu" label="Places"/>

@@ -16,12 +16,12 @@ _pkgs=(desktop-file-utils feh fontconfig-utils \
 setup_base() {
 	echo -e ${RED}"\n[*] Installing Termux Desktop..."
 	echo -e ${CYAN}"\n[*] Updating Termux Base... \n"
-	{ reset_color; pkg autoclean; pkg upgrade -y; }
+	{ pkg autoclean; pkg upgrade -y; }
 	echo -e ${CYAN}"\n[*] Enabling Termux X11-repo... \n"
-	{ reset_color; pkg install -y x11-repo; }
+	{ pkg install -y x11-repo; }
 	echo -e ${CYAN}"\n[*] Installing required programs... \n"
 	for package in "${_pkgs[@]}"; do
-		{ reset_color; pkg install -y "$package"; }
+		{ pkg install -y "$package"; }
 		_ipkg=$(pkg list-installed $package 2>/dev/null | tail -n 1)
 		_checkpkg=${_ipkg%/*}
 		if [[ "$_checkpkg" == "$package" ]]; then
@@ -29,10 +29,10 @@ setup_base() {
 			continue
 		else
 			echo -e ${MAGENTA}"\n[!] Error installing $package, Terminating...\n"
-			{ reset_color; exit 1; }
+			{ exit 1; }
 		fi
 	done
-	reset_color
+	
 }
 ## Configuration
 setup_config() {
@@ -42,7 +42,7 @@ setup_config() {
 	for file in "${configs[@]}"; do
 		echo -e ${CYAN}"\n[*] Backing up $file..."
 		if [[ -f "$HOME/$file" || -d "$HOME/$file" ]]; then
-			{ reset_color; mv -u ${HOME}/${file}{,.old}; }
+			{ mv -u ${HOME}/${file}{,.old}; }
 		else
 			echo -e ${MAGENTA}"\n[!] $file Doesn't Exist."			
 		fi
@@ -52,7 +52,7 @@ setup_config() {
 	echo -e ${RED}"\n[*] Coping config files... "
 	for _config in "${configs[@]}"; do
 		echo -e ${CYAN}"\n[*] Coping $_config..."
-		{ reset_color; cp -rf $(pwd)/files/$_config $HOME; }
+		{ cp -rf $(pwd)/files/$_config $HOME; }
 	done
 	if [[ ! -d "$HOME/Desktop" ]]; then
 		mkdir $HOME/Desktop
@@ -66,7 +66,7 @@ setup_vnc() {
 		mv $HOME/.vnc{,.old}
 	fi
 	echo -e ${RED}"\n[*] Setting up VNC Server..."
-	{ reset_color; vncserver -localhost; }
+	{ vncserver -localhost; }
 	sed -i -e 's/# geometry=.*/geometry=1366x768/g' $HOME/.vnc/config
 	cat > $HOME/.vnc/xstartup <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
@@ -78,7 +78,7 @@ setup_vnc() {
 	_EOF_
 	if [[ $(pidof Xvnc) ]]; then
 		    echo -e ${ORANGE}"[*] Server Is Running..."
-		    { reset_color; vncserver -list; }
+		    { vncserver -list; }
 	fi
 }
 
@@ -89,7 +89,7 @@ setup_launcher() {
 		rm -rf "$file"
 	fi
 	echo -e ${RED}"\n[*] Creating Launcher Script... \n"
-	{ reset_color; touch $file; chmod +x $file; }
+	{ touch $file; chmod +x $file; }
 	cat > $file <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
 
@@ -126,7 +126,7 @@ post_msg() {
 		[-] Make sure you enter the correct port. ie: If server is running on ${ORANGE}Display :2 ${GREEN}then port is ${ORANGE}5902 ${GREEN}and so on.
 		  
 	_MSG_
-	{ reset_color; exit 0; }
+	{ exit 0; }
 }
 
 ## Install Termux Desktop
@@ -146,31 +146,31 @@ uninstall_td() {
 	echo -e ${CYAN}"\n[*] Removing Packages..."
 	for package in "${_pkgs[@]}"; do
 		echo -e ${GREEN}"\n[*] Removing Packages ${ORANGE}$package \n"
-		{ reset_color; apt-get remove -y --purge --autoremove $package; }
+		{ apt-get remove -y --purge --autoremove $package; }
 	done
 	
 	# delete files
 	echo -e ${CYAN}"\n[*] Deleting config files...\n"
-	_homefiles=(.fehbg .icons .mpd .ncmpcpp .fonts .gtkrc-2.0 .mutt .themes .vnc Music)
-	_configfiles=(Thunar geany  gtk-3.0 leafpad netsurf openbox polybar ranger rofi xfce4)
+	_homefiles=(.fehbg .icons .ncmpcpp .fonts .gtkrc-2.0 .themes .vnc )
+	_configfiles=(Thunar geany  gtk-3.0 openbox rofi xfce4)
 	_localfiles=(bin lib 'share/backgrounds' 'share/pixmaps')
 	for i in "${_homefiles[@]}"; do
 		if [[ -f "$HOME/$i" || -d "$HOME/$i" ]]; then
-			{ reset_color; rm -rf $HOME/$i; }
+			{ rm -rf $HOME/$i; }
 		else
 			echo -e ${MAGENTA}"\n[!] $file Doesn't Exist.\n"
 		fi
 	done
 	for j in "${_configfiles[@]}"; do
 		if [[ -f "$HOME/.config/$j" || -d "$HOME/.config/$j" ]]; then
-			{ reset_color; rm -rf $HOME/.config/$j; }
+			{ rm -rf $HOME/.config/$j; }
 		else
 			echo -e ${MAGENTA}"\n[!] $file Doesn't Exist.\n"			
 		fi
 	done
 	for k in "${_localfiles[@]}"; do
 		if [[ -f "$HOME/.local/$k" || -d "$HOME/.local/$k" ]]; then
-			{ reset_color; rm -rf $HOME/.local/$k; }
+			{ rm -rf $HOME/.local/$k; }
 		else
 			echo -e ${MAGENTA}"\n[!] $file Doesn't Exist.\n"			
 		fi
@@ -184,5 +184,5 @@ if [[ "$1" == "--install" ]]; then
 elif [[ "$1" == "--uninstall" ]]; then
 	uninstall_td
 else
-	{ usage; reset_color; exit 0; }
+	{ usage; exit 0; }
 fi

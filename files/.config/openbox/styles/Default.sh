@@ -1,7 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 ## Dirs #############################################
-polybar_path="$HOME/.config/polybar"
 rofi_path="$HOME/.config/rofi"
 terminal_path="$HOME/.config/xfce4/terminal"
 geany_path="$HOME/.config/geany"
@@ -10,18 +9,9 @@ openbox_path="$HOME/.config/openbox"
 # wallpaper ---------------------------------
 feh --bg-scale $HOME/.local/share/backgrounds/Default.png
 
-# polybar ---------------------------------
-sed -i -e 's/STYLE=.*/STYLE="default"/g' $polybar_path/launch.sh
-sed -i -e 's/font-0 = .*/font-0 = "Iosevka Nerd Font:size=10;3"/g' $polybar_path/default/config.ini
-
-# relaunch polybar
-$polybar_path/launch.sh
-
 # rofi ---------------------------------
-sed -i -e 's/STYLE=.*/STYLE="default"/g' "$rofi_path/bin/mpd" "$rofi_path/bin/network" "$rofi_path/bin/battery"
 sed -i -e 's/DIR=.*/DIR="default"/g' "$rofi_path/bin/launcher" "$rofi_path/bin/powermenu"
 sed -i -e 's/STYLE=.*/STYLE="launcher"/g' "$rofi_path/bin/launcher"
-sed -i -e 's/STYLE=.*/STYLE="powermenu"/g' "$rofi_path/bin/powermenu"
 sed -i -e 's/font:.*/font:				 	"Iosevka 10";/g' "$rofi_path/default/font.rasi"
 
 sed -i -e 's/font:.*/font:				 	"Iosevka 10";/g' "$rofi_path/dialogs/askpass.rasi" "$rofi_path/dialogs/confirm.rasi"

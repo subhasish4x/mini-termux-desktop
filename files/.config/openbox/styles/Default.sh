@@ -10,7 +10,6 @@ openbox_path="$HOME/.config/openbox"
 feh --bg-scale $HOME/.local/share/backgrounds/Default.png
 
 # rofi ---------------------------------
-sed -i -e 's/DIR=.*/DIR="default"/g' "$rofi_path/bin/launcher" "$rofi_path/bin/powermenu"
 sed -i -e 's/STYLE=.*/STYLE="launcher"/g' "$rofi_path/bin/launcher"
 sed -i -e 's/font:.*/font:				 	"Iosevka 10";/g' "$rofi_path/default/font.rasi"
 

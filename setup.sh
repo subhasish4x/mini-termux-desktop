@@ -8,7 +8,7 @@ usage() {
 
 ## Update, X11-repo, Program Installation
 _pkgs=(desktop-file-utils feh fontconfig-utils \
-		geany git gtk2 gtk3 ncmpcpp \
+		git gtk3 \
 		ncurses-utils obconf openbox rofi \
 		thunar tigervnc neovim xbitmaps xcompmgr \
 		xfce4-settings xfce4-terminal xmlstarlet xorg-font-util xorg-xrdb )
